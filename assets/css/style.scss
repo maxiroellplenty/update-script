@@ -1,9 +1,30 @@
----
----
-
 @import "{{ site.theme }}";
+
+body
+{
+    background-color: #2a2a2a;
+}
+
+header
+{
+    background-color: #505050;
+    h1
+    {
+        text-shadow: none;
+    }
+}
 
 #banner
 {
     background-color: rgb(55, 53, 53);
+    border:none;
+    #logo
+    {
+        color:white;
+    }
+    .button
+    {
+        border: none;
+        background-color:white;
+    }
 }
