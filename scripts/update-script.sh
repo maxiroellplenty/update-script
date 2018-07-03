@@ -193,10 +193,10 @@ install()
     echo "alias terra-utility-update='sh ~/.terra-script -install'" >> /etc/bashrc
 }
 
-if  [ $1 == "-install" ]
+if  [ "$1" == "-install" ]
 then
     install
-elif [ $1 == "-update" ]
+elif [ "$1" == "-update" ]
 then
     echo "test"
 else
