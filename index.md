@@ -17,18 +17,22 @@ run-utility
 ***
 
 ### Terra
-| command      | description          |
-|:-------------|:------------------|
-| `terra-start`     | starts local terra node server |
-| `terra-clean-restart`       | removes `node_modules`, installs node packages and restarts node server|
-| `terra-install`        | removes `node_modules`, installs node packages      |
+
+| command                | description                                                              |
+|:-----------------------|:-------------------------------------------------------------------------|
+| `terra-start`          | starts local terra node server                                           |
+| `terra-clean-restart`  | removes `node_modules`, installs node packages and restarts node server  |
+| `terra-install`        | removes `node_modules`, installs node packages                           |
 
 ### Vagrant
-| command      | description          |
-|:-------------|:------------------|
-| `vac-start`       | starts vagrant    |
-| `vac-stop`        | stops vagrant      |
-| `vac-ssh`         | enables ssh connection     |
+
+| command                | description                                                              |
+|:-----------------------|:-------------------------------------------------------------------------|
+| `vac-start`            | starts vagrant                                                           |
+| `vac-stop`             | stops vagrant                                                            |
+| `vac-ssh`              | connect on to vagrant with ssh                                           |
+
+                                            
 
 ### Support or Contact
 
