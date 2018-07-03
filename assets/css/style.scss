@@ -1,40 +1,54 @@
+--- 
 ---
----
-@import "{{ site.theme }}";
+ @import "{{ site.theme }}";
 
-a
-{
-    color:rgb(40, 225, 40);
+a {
+    color: rgb(40, 225, 40);
 }
 
-body
-{
+body {
     background-color: #2a2a2a;
-    background-image:none;
+    background-image: none;
 }
 
-header
-{
+header {
     background-color: #505050;
-    background-image:none;
-    h1
-    {
+    background-image: none;
+    h1 {
         text-shadow: none;
     }
 }
 
-#banner
-{
+#banner {
     background-color: rgb(55, 53, 53);
-    border:none;
-    background-image:none;
-    #logo
-    {
-        color:white;
+    border: none;
+    background-image: none;
+    #logo {
+        color: white;
     }
-    .button
-    {
+    .button {
         border: none;
-        background-color:white;
+        background-color: white;
+        &:hover
+        {
+            background-color: rgb(216, 216, 216);
+        }
+    }
+    .downloads {
+        span {
+            text-shadow: none;
+            color: white;
+        }
+        ul li a.button {
+            li {
+                .button {
+                    background-color: white;
+                    &:hover
+                    {
+                        background-color: rgb(216, 216, 216);
+                    }
+                }
+            }
+        }
     }
 }
