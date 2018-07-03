@@ -23,6 +23,8 @@ run-utility
 | `terra-start`          | starts local terra node server                                           |
 | `terra-clean-restart`  | removes `node_modules`, installs node packages and restarts node server  |
 | `terra-install`        | removes `node_modules`, installs node packages                           |
+| `terra-build`          | builds `terra-components` and makes clean `terra` install                |
+
 
 ### Vagrant
 
@@ -30,10 +32,9 @@ run-utility
 |:-----------------------|:-------------------------------------------------------------------------|
 | `vac-start`            | starts vagrant                                                           |
 | `vac-stop`             | stops vagrant                                                            |
-| `vac-ssh`              | connect on to vagrant with ssh                                           |
-
-                                            
+| `vac-ssh`              | connect on to vagrant via ssh                                            |
+                                     
 
 ### Support or Contact
 
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+Having trouble with the install? Contact use [contact support](https://github.com/contact) and we’ll help you sort it out.
