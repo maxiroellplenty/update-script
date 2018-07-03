@@ -1,36 +1,34 @@
-## Welcome to GitHub Pages
+## Welcome to Update Script
 
-You can use the [editor on GitHub](https://github.com/maxiroellplenty/update-script.github.io/edit/master/index.md) to maintain and preview the content for your website in Markdown files.
+### Getting Started
+Open your terminal and execute this command to install the script
+``` 
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/maxiroellplenty/update-script/master/scripts/update-script.sh)"
+```
+After your done execute this command to start the script
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
-
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+```
+run-utility
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+![Preview](/assets/images/preview.png)
 
-### Jekyll Themes
+### Alias Cheat Sheet
+***
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/maxiroellplenty/update-script.github.io/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+### Terra
+| command      | description          |
+|:-------------|:------------------|
+| `terra-start`     | starts local terra node server |
+| `terra-clean-restart`       | removes `node_modules`, installs node packages and restarts node server|
+| `terra-install`        | removes `node_modules`, installs node packages      |
+
+### Vagrant
+| command      | description          |
+|:-------------|:------------------|
+| `vac-start`       | starts vagrant    |
+| `vac-stop`        | stops vagrant      |
+| `vac-ssh`         | enables ssh connection     |
 
 ### Support or Contact
 
