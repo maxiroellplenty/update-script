@@ -10,3 +10,4 @@ cp -r /scripts/* ../
 downliadDir=${PWD##*/}
 cd ..
 rm -r "$downliadDir"
+echo sh ~/update-script/scripts/alias.sh >> /etc/bashrc
