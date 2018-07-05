@@ -25,11 +25,10 @@ normal=$(tput sgr0)
 
 readRepositories()
 {
-    CURDIR=`/bin/pwd`
     while read line || [ -n "$line" ];
     do
         repositories+=("$line")
-    done < "$CURDIR/repositories.cfg"
+    done < ~/update-script/scripts/repositories.cfg
     #echo "${repositories[*]}";
     repositoriesLenght=${#repositories[@]};
     progressStep=$((100 / $repositoriesLenght));
@@ -84,7 +83,7 @@ pullForce()
         calcProgressBar
         echo "🍕 (${PURPLE}$progressBar%${SET}) ${GREEN} $i complete${SET}\n";
     done
-    progressBar=$(0);
+    progressBar=0;
     printLine
 }
 pullSave()
