@@ -8,7 +8,7 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/maxiroellplenty/update-scr
 After your done execute this command to start the script
 
 ```
-run-utility
+run-util
 ```
 
 ![Preview](/assets/images/preview.png)

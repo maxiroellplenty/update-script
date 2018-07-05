@@ -25,11 +25,11 @@ normal=$(tput sgr0)
 
 readRepositories()
 {
+    CURDIR=`/bin/pwd`
     while read line || [ -n "$line" ];
     do
         repositories+=("$line")
-    done < repositories.cfg
-    
+    done < "$CURDIR/repositories.cfg"
     #echo "${repositories[*]}";
     repositoriesLenght=${#repositories[@]};
     progressStep=$((100 / $repositoriesLenght));
