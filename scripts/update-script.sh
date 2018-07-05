@@ -2,12 +2,7 @@
 
 # OPTIONS
 # This Array is used to insert your list of repositories you want to use
-declare -a repositories=("terra"
-    "pl"
-    "py"
-    "ps"
-    "localsystem/plugins/inbox/plugins/Ceres"
-"localsystem/plugins/inbox/plugins/IO");
+declare -a repositories=();
 
 # Base working directory
 baseWorkspace='/workspace/';
@@ -28,13 +23,22 @@ SET='\033[0m'
 bold=$(tput bold)
 normal=$(tput sgr0)
 
-repositoriesLenght=${#repositories[@]};
-progressStep=$((100 / $repositoriesLenght));
+readRepositories()
+{
+    while read line || [ -n "$line" ];
+    do
+        repositories+=("$line")
+    done < repositories.cfg
+    
+    #echo "${repositories[*]}";
+    repositoriesLenght=${#repositories[@]};
+    progressStep=$((100 / $repositoriesLenght));
+}
 
 calcProgressBar()
 {
     progressBar=$(($progressBar + $progressStep));
-};
+}
 printLine()
 {
     printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' █
@@ -178,6 +182,7 @@ read_options()
 
 main()
 {
+    readRepositories
     while true
     do
         show_menus
@@ -188,11 +193,8 @@ main()
 install()
 {
     echo "${PURPLE} Installing terra update script ${SET}";
-    curl "https://gist.githubusercontent.com/maxiroellplenty/24f5ac49942407cae044207644e0ae0c/raw/5a5843c29d6493a3ed6c26100be8fc8a5af7ea7e/terra-utility-script.sh" > ~/.terra-script
-    echo "alias terra-utility='sh ~/.terra-script'" >> /etc/bashrc
-    echo "alias terra-utility-update='sh ~/.terra-script -install'" >> /etc/bashrc
+    
 }
-
 if  [ "$1" == "-install" ]
 then
     install
