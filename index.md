@@ -1,19 +1,30 @@
 ## Welcome to Update Script
 
-### Getting Started
+## Getting started
+
 Open your terminal and execute this command to install the script
-``` 
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/maxiroellplenty/update-script/master/scripts/install.sh)"
+``` bash
+sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/maxiroellplenty/update-script/master/scripts/install.sh)"
 ```
 After your done execute this command to start the script
 
-```
-run-util
+``` bash
+update-util
 ```
 
 ![Preview](/assets/images/preview.png)
 
-### Alias Cheat Sheet
+## Edit Alias
+navigate to the alias file
+``` bash
+sudo nano ~/update-script/scripts/alias.sh
+```
+## Remove package
+to delete all scripts run 
+``` bash 
+sudo rm -rf ~/updated-script
+```
+## Alias Cheat Sheet
 ***
 
 ### Terra
