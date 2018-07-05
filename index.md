@@ -3,7 +3,7 @@
 ### Getting Started
 Open your terminal and execute this command to install the script
 ``` 
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/maxiroellplenty/update-script/master/scripts/update-script.sh)"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/maxiroellplenty/update-script/master/scripts/install.sh)"
 ```
 After your done execute this command to start the script
 
