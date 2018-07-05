@@ -6,6 +6,7 @@ Open your terminal and execute this command to install the script
 ``` bash
 sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/maxiroellplenty/update-script/master/scripts/install.sh)"
 ```
+## Run script
 After your done execute this command to start the script
 
 ``` bash
@@ -14,7 +15,7 @@ update-util
 
 ![Preview](/assets/images/preview.png)
 
-## Edit Alias
+## Edit alias
 navigate to the alias file
 ``` bash
 sudo nano ~/update-script/scripts/alias.sh
