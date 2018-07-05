@@ -22,7 +22,7 @@ sudo nano ~/update-script/scripts/alias.sh
 ## Remove package
 to delete all scripts run 
 ``` bash 
-sudo rm -rf ~/updated-script
+sudo rm -rf ~/update-script
 ```
 ## Alias Cheat Sheet
 ***
