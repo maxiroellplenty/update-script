@@ -15,10 +15,15 @@ update-util
 
 ![Preview](/assets/images/preview.png)
 
-## Edit alias
-navigate to the alias file
+## Update alias
+open the alias file
 ``` bash
 sudo nano ~/update-script/scripts/alias.sh
+```
+## Update repository list
+open the repositories file
+``` bash
+sudo nano ~/update-script/scripts/repositories.cfg
 ```
 ## Remove package
 to delete all scripts run 
