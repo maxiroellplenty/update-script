@@ -45,7 +45,16 @@ printLine()
 printWarning()
 {
     echo "${bold}This script will reset all current changes to:"
-    echo "🔨 ${RED}${repositories[*]}${SET}${normal}"
+    echo "⚠️  ${YELLOW}${repositories[*]}${SET}${normal}\n"
+    echo "Are you sure you want to reset all local changes Y/N"
+
+    read input
+    case $input in
+        "Y") pullForce ;;
+        "N") main ;;
+        *) echo -e "${RED}Error...${SET}" && sleep 2
+    esac
+
 }
 printHeader()
 {
@@ -64,7 +73,6 @@ EOF
 }
 pullForce()
 {
-    printWarning
     printLine
     echo "\n"
     for i in "${repositories[@]}"
@@ -72,16 +80,16 @@ pullForce()
         dir="$baseWorkspace$i"
         cd $dir
         if [ -n "$(git status --porcelain)" ]; then
-            echo "🌎 ${GREEN}started pulling ${i}${SET}"
+            echo "📂 ${GREEN}started pulling ${i}${SET}"
             echo "there were changes";
             git reset --hard
             git pull
         else
-            echo "🌎 ${GREEN}started pulling ${i}${SET}"
+            echo "📂 ${GREEN}started pulling ${i}${SET}"
             git pull
         fi
         calcProgressBar
-        echo "🍕 (${PURPLE}$progressBar%${SET}) ${GREEN} $i complete${SET}\n";
+        echo "🏁 (${PURPLE}$progressBar%${SET}) ${GREEN} $i complete${SET}\n";
     done
     progressBar=0;
     printLine
@@ -98,11 +106,11 @@ pullSave()
             echo "there are local changes at ${i}";
             echo "${RED}cancel pull action!${SET}"
         else
-            echo "🌎 ${GREEN}started pulling ${i}${SET}"
+            echo "📂 ${GREEN}started pulling ${i}${SET}"
             git pull
         fi
         calcProgressBar
-        echo "🍕 (${PURPLE}$progressBar%${SET}) ${GREEN} $i complete${SET}\n";
+        echo "🏁 (${PURPLE}$progressBar%${SET}) ${GREEN} $i complete${SET}\n";
     done
     progressBar=0;
     printLine
@@ -140,8 +148,8 @@ pause()
 show_menus()
 {
     printHeader
-    echo "1. Pull all repositories (force reset changes)"
-    echo "2. Pull all repositories"
+    echo "1. Pull all repositories"
+    echo "2. Pull all repositories ${RED}(force reset changes)${SET}"
     echo "3. Show repository list"
     echo "4. Clean local repository"
     echo "5. Exit"
@@ -169,8 +177,8 @@ read_options()
     local choice
     read -p "Enter choice [ 1 - 5] " choice
     case $choice in
-        1) pullForce ;;
-        2) pullSave ;;
+        1) pullSave ;;
+        2) printWarning ;;
         3) showRepositories;;
         4) cleanLocalRepository;;
         5) exit 0;;
