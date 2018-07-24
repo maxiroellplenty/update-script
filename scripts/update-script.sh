@@ -155,17 +155,28 @@ show_menus()
     echo "5. Exit"
 }
 
+cleanLocalRepositoryWarning()
+{
+    echo "⚠️  ${YELLOW}${bold}This function will remove stale branches and local stashes"${SET}
+    echo "Are you sure you want to execute this function Y/N"
+    read input
+    case $input in
+        "Y") cleanLocalRepository ;;
+        "N") main ;;
+        *) echo -e "${RED}Error...${SET}" && sleep 2
+    esac
+}
+
 cleanLocalRepository()
 {
     local choice
     local count=0
-    
     for i in "${repositories[@]}"
     do
         echo "$count. $baseWorkspace${PURPLE}$i${SET}";
         count=$((count+1))
     done
-    
+
     read -p "select the repository you want to clean  " choice
     dir="$baseWorkspace${repositories[$choice]}";
     cd $dir;
@@ -180,7 +191,7 @@ read_options()
         1) pullSave ;;
         2) printWarning ;;
         3) showRepositories;;
-        4) cleanLocalRepository;;
+        4) cleanLocalRepositoryWarning;;
         5) exit 0;;
         *) echo -e "${RED}Error...${SET}" && sleep 2
     esac
@@ -189,6 +200,7 @@ read_options()
 
 main()
 {
+    repositories=();
     readRepositories
     while true
     do
