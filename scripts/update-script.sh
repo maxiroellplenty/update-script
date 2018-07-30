@@ -151,7 +151,7 @@ show_menus()
     echo "1. Pull all repositories"
     echo "2. Pull all repositories ${RED}(force reset changes)${SET}"
     echo "3. Show repository list"
-    echo "4. Clean local repository"
+    echo "${DARKGRAY}4. Clean local repository${SET}"
     echo "5. Exit"
 }
 
@@ -191,7 +191,7 @@ read_options()
         1) pullSave ;;
         2) printWarning ;;
         3) showRepositories;;
-        4) cleanLocalRepositoryWarning;;
+        4) main;;
         5) exit 0;;
         *) echo -e "${RED}Error...${SET}" && sleep 2
     esac
