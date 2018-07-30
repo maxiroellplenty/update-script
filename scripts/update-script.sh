@@ -52,6 +52,8 @@ printWarning()
     case $input in
         "Y") pullForce ;;
         "N") main ;;
+        "y") pullForce ;;
+        "n") main ;;
         *) echo -e "${RED}Error...${SET}" && sleep 2
     esac
 
@@ -144,17 +146,6 @@ pause()
     read -p "Press [Enter] key to continue..." fackEnterKey
 }
 
-# function to display menus
-show_menus()
-{
-    printHeader
-    echo "1. Pull all repositories"
-    echo "2. Pull all repositories ${RED}(force reset changes)${SET}"
-    echo "3. Show repository list"
-    echo "${DARKGRAY}4. Clean local repository${SET}"
-    echo "5. Exit"
-}
-
 cleanLocalRepositoryWarning()
 {
     echo "⚠️  ${YELLOW}${bold}This function will remove stale branches and local stashes"${SET}
@@ -163,9 +154,32 @@ cleanLocalRepositoryWarning()
     case $input in
         "Y") cleanLocalRepository ;;
         "N") main ;;
+        "y") cleanLocalRepository ;;
+        "n") main ;;
         *) echo -e "${RED}Error...${SET}" && sleep 2
     esac
 }
+
+install()
+{
+    echo "${YELLOW}Administrator privileges will be required... ${SET}"
+    sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/maxiroellplenty/update-script/master/scripts/install.sh)"
+}
+
+installWarning()
+{
+    echo "⚠️  ${YELLOW}${bold}Updating the script will override your repository & alias config"${SET}
+    echo "Are you sure you want to execute this function Y/N"
+    read input
+    case $input in
+        "Y") install ;;
+        "N") main ;;
+        "y") install ;;
+        "n") main ;;
+        *) echo -e "${RED}Error...${SET}" && sleep 2
+    esac
+}
+
 
 cleanLocalRepository()
 {
@@ -183,6 +197,18 @@ cleanLocalRepository()
     git fetch -p && for branch in `git branch -vv | grep ': gone]' | awk '{print $1}'`; do git branch -D $branch; done
 }
 
+# function to display menus
+show_menus()
+{
+    printHeader
+    echo "1. Pull all repositories"
+    echo "2. ${YELLOW}Pull all repositories ${SET} ${RED}(force reset changes)${SET}"
+    echo "3. Show repository list"
+    echo "${DARKGRAY}4. Clean local repository${SET}"
+    echo "5. Exit"
+    echo "6. ${YELLOW}Update script${SET}"
+}
+
 read_options()
 {
     local choice
@@ -193,6 +219,7 @@ read_options()
         3) showRepositories;;
         4) main;;
         5) exit 0;;
+        6) installWarning;;
         *) echo -e "${RED}Error...${SET}" && sleep 2
     esac
 }
@@ -209,11 +236,6 @@ main()
     done
 }
 
-install()
-{
-    echo "${PURPLE} Installing terra update script ${SET}";
-    
-}
 if  [ "$1" == "-install" ]
 then
     install
