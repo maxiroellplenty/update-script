@@ -1,11 +1,11 @@
 alias vac-start='cd /workspace/vagrant-vm && vagrant up'
 alias vac-stop='cd /workspace/vagrant-vm && vagrant halt'
 alias vac-ssh='cd /workspace/vagrant-vm && vagrant ssh'
+alias terra="cd /workspace/terra"
+alias terra-components="cd /workspace/terra-components"
 alias terra-start='cd /workspace/terra && npm start'
 alias terra-install="cd /workspace/terra  && rm -rf node_modules/ && npm i"
 alias terra-restart="terra-install && terra-start"
-alias terra="cd /workspace/terra"
-alias terra-components="cd /workspace/terra-components"
 alias ceres="cd /workspace/localsystem/plugins/inbox/plugins/Ceres"
 alias update-util="sh ~/update-script/scripts/update-script.sh"
 alias hosts="sudo nano /etc/hosts"

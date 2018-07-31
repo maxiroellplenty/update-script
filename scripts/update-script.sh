@@ -31,12 +31,11 @@ readRepositories()
     done < ~/update-script/scripts/repositories.cfg
     #echo "${repositories[*]}";
     repositoriesLenght=${#repositories[@]};
-    progressStep=$((100 / $repositoriesLenght));
 }
 
 calcProgressBar()
 {
-    progressBar=$(($progressBar + $progressStep));
+    progressBar=$(($progressBar + 1 ));
 }
 printLine()
 {
@@ -88,7 +87,7 @@ pullForce()
             git pull
         fi
         calcProgressBar
-        echo "🏁 (${PURPLE}$progressBar%${SET}) ${GREEN} $i complete${SET}\n";
+        echo "🏁 (${PURPLE}$progressBar/$repositoriesLenght${SET}) ${GREEN} $i √${SET}\n";
     done
     progressBar=0;
     printLine
@@ -109,7 +108,7 @@ pullSave()
             git pull
         fi
         calcProgressBar
-        echo "🏁 (${PURPLE}$progressBar%${SET}) ${GREEN} $i complete${SET}\n";
+        echo "🏁 (${PURPLE}$progressBar/$repositoriesLenght${SET}) ${GREEN}$i${SET} √\n";
     done
     progressBar=0;
     printLine
