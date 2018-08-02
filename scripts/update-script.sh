@@ -5,7 +5,7 @@
 declare -a repositories=();
 
 # Import colors
-source ./colors.sh
+source ~/update-script/scripts/colors.sh
 
 # Base working directory
 baseWorkspace='/workspace/';
