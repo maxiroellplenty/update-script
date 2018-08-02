@@ -10,6 +10,9 @@ alias terra-components="cd /workspace/terra-components"
 alias ceres="cd /workspace/localsystem/plugins/inbox/plugins/Ceres"
 alias hosts="sudo nano /etc/hosts"
 
+### Import Colors ###
+source colors.sh
+
 function terra()
 {
     case $1 in
