@@ -11,7 +11,7 @@ alias ceres="cd /workspace/localsystem/plugins/inbox/plugins/Ceres"
 alias hosts="sudo nano /etc/hosts"
 
 ### Import Colors ###
-source colors.sh
+source ./colors.sh
 
 function terra()
 {
