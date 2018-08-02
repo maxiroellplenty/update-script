@@ -176,6 +176,10 @@ installWarning()
     esac
 }
 
+editRepositories()
+{
+    sudo nano ~/update-script/scripts/repositories.cfg
+}
 
 cleanLocalRepository()
 {
@@ -198,24 +202,26 @@ show_menus()
 {
     printHeader
     echo "1. Pull all repositories"
-    echo "2. ${YELLOW}Pull all repositories ${SET} ${RED}(force reset changes)${SET}"
+    echo "2. ${YELLOW}Pull all repositories ${SET} ${LIGHTRED}(force reset changes)${SET}"
     echo "3. Show repository list"
-    echo "${DARKGRAY}4. Clean local repository${SET}"
+    echo "4. Clean local repository ${LIGHTRED}(disabled)${SET}"
     echo "5. Exit"
-    echo "6. ${YELLOW}Update script${SET}"
+    echo "6. Edit repositories" 
+    echo "7. ${YELLOW}Update script${SET}"
 }
 
 read_options()
 {
     local choice
-    read -p "Enter choice [ 1 - 6] " choice
+    read -p "Enter choice [ 1 - 7] " choice
     case $choice in
         1) pullSave ;;
         2) printWarning ;;
         3) showRepositories;;
         4) main;;
         5) exit 0;;
-        6) installWarning;;
+        6) editRepositories;;
+        7) installWarning;;
         *) echo -e "${RED}Error...${SET}" && sleep 2
     esac
 }

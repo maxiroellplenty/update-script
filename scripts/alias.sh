@@ -1,11 +1,36 @@
-alias vac-start='cd /workspace/vagrant-vm && vagrant up'
-alias vac-stop='cd /workspace/vagrant-vm && vagrant halt'
-alias vac-ssh='cd /workspace/vagrant-vm && vagrant ssh'
-alias terra="cd /workspace/terra"
-alias terra-components="cd /workspace/terra-components"
-alias terra-start='cd /workspace/terra && npm start'
-alias terra-install="cd /workspace/terra  && rm -rf node_modules/ && npm i"
-alias terra-restart="terra-install && terra-start"
-alias ceres="cd /workspace/localsystem/plugins/inbox/plugins/Ceres"
+### Paths ###
+terra='/workspace/terra'
+vagrant='/workspace/vagrant-vm'
+
+### Git Update Script Start ###
 alias update-util="sh ~/update-script/scripts/update-script.sh"
+
+### Other ###
+alias terra-components="cd /workspace/terra-components"
+alias ceres="cd /workspace/localsystem/plugins/inbox/plugins/Ceres"
 alias hosts="sudo nano /etc/hosts"
+
+function terra()
+{
+    case $1 in
+        move) cd $terra;;
+        start) cd $terra && npm start;;
+        install) cd $terra && rm -rf node_modules/ && npm i;;
+        restart) cd $terra && rm -rf node_modules/ && npm i && npm start;;
+        build) cd $terra && npm run build;;
+        help) echo "checkout this link for alias information https://maxiroellplenty.github.io/roelldev-blog/2018/07/24/git-update-script/";;
+        *) echo -e "${RED}Wrong option type: 'terra help', for help ${SET}" && sleep 1;;
+    esac
+}
+
+function vm()
+{
+    case $1 in
+        move) cd $vagrant;;
+        start) cd $vagrant && vagrant up;;
+        stop) cd $vagrant && vagrant halt;;
+        ssh) cd $vagrant && vagrant ssh;;
+        help) echo "checkout this link for alias information https://maxiroellplenty.github.io/roelldev-blog/2018/07/24/git-update-script/";;
+        *) echo -e "${RED}Wrong option type: 'terra help', for help ${SET}" && sleep 1;;
+    esac
+}
