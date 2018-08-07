@@ -1,16 +1,13 @@
 # Author Frank Wizard
-
-# OPTIONS
-# This Array is used to insert your list of repositories you want to use
 declare -a repositories=();
 
-# Import colors
 source ~/update-script/scripts/colors.sh
+source ~/update-script/scripts/art.sh
 
 # Base working directory
 baseWorkspace='/workspace/';
 
-readRepositories()
+function readRepositories()
 {
     while read line || [ -n "$line" ];
     do
@@ -20,15 +17,15 @@ readRepositories()
     repositoriesLenght=${#repositories[@]};
 }
 
-calcProgressBar()
+function calcProgressBar()
 {
     progressBar=$(($progressBar + 1 ));
 }
-printLine()
+function printLine()
 {
     printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' █
 }
-printWarning()
+function printWarning()
 {
     echo "${bold}This script will reset all current changes to:"
     echo "⚠️  ${YELLOW}${repositories[*]}${SET}${normal}\n"
@@ -44,19 +41,7 @@ printWarning()
     esac
 
 }
-printHeader()
-{
-cat << "EOF"
-   _______ __     __  __          __      __          _____           _       __ 
-  / ____(_) /_   / / / /___  ____/ /___ _/ /____     / ___/__________(_)___  / /_
- / / __/ / __/  / / / / __ \/ __  / __ `/ __/ _ \    \__ \/ ___/ ___/ / __ \/ __/
-/ /_/ / / /_   / /_/ / /_/ / /_/ / /_/ / /_/  __/   ___/ / /__/ /  / / /_/ / /_  
-\____/_/\__/   \____/ .___/\__,_/\__,_/\__/\___/   /____/\___/_/  /_/ .___/\__/  
-                   /_/                                             /_/           
-EOF
-echo ""
-}
-pullForce()
+function pullForce()
 {
     printLine
     echo "\n"
@@ -79,7 +64,7 @@ pullForce()
     progressBar=0;
     printLine
 }
-pullSave()
+function pullSave()
 {
     printLine
     echo "\n"
@@ -100,7 +85,7 @@ pullSave()
     progressBar=0;
     printLine
 }
-showRepositories()
+function showRepositories()
 {
     printLine
     echo "${bold}REPOSITORY OVERVIEW ${normal}"
@@ -124,12 +109,12 @@ showRepositories()
     printLine
 }
 
-pause()
+function pause()
 {
     read -p "Press [Enter] key to continue..." fackEnterKey
 }
 
-cleanLocalRepositoryWarning()
+function cleanLocalRepositoryWarning()
 {
     echo "⚠️  ${YELLOW}${bold}This function will remove stale branches and local stashes"${SET}
     echo "Are you sure you want to execute this function Y/N"
@@ -143,13 +128,24 @@ cleanLocalRepositoryWarning()
     esac
 }
 
-install()
+function install()
 {
     echo "${YELLOW}Administrator privileges will be required... ${SET}"
     sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/maxiroellplenty/update-script/master/scripts/install.sh)"
 }
 
-installWarning()
+function installAdventure()
+{
+    printTroll
+    cd ~/update-script
+    if [ ! -d "BashVenture" ]; then
+        sudo git clone https://github.com/apetro/BashVenture.git
+    fi
+    cd BashVenture
+    sudo sh adventure.sh
+}
+
+function installWarning()
 {
     echo "⚠️  ${YELLOW}${bold}Updating the script will override your repository & alias config"${SET}
     echo "Are you sure you want to execute this function Y/N"
@@ -163,12 +159,12 @@ installWarning()
     esac
 }
 
-editRepositories()
+function editRepositories()
 {
     sudo nano ~/update-script/scripts/repositories.cfg
 }
 
-cleanLocalRepository()
+function cleanLocalRepository()
 {
     local choice
     local count=0
@@ -185,7 +181,7 @@ cleanLocalRepository()
 }
 
 # function to display menus
-show_menus()
+function show_menus()
 {
     printHeader
     echo "1. Pull all repositories"
@@ -197,7 +193,7 @@ show_menus()
     echo "7. ${YELLOW}Update script${SET}"
 }
 
-read_options()
+function read_options()
 {
     local choice
     read -p "Enter choice [ 1 - 7] " choice
@@ -209,12 +205,13 @@ read_options()
         5) exit 0;;
         6) editRepositories;;
         7) installWarning;;
+        1337) installAdventure;;
         *) echo -e "${RED}Error...${SET}" && sleep 2
     esac
 }
 #trap '' SIGINT SIGQUIT SIGTSTP
 
-main()
+function main()
 {
     repositories=();
     readRepositories

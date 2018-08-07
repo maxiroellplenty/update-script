@@ -34,6 +34,6 @@ function vm()
         stop) cd $vagrant && vagrant halt;;
         ssh) cd $vagrant && vagrant ssh;;
         help) echo "checkout this link for alias information https://maxiroellplenty.github.io/roelldev-blog/2018/07/24/git-update-script/";;
-        *) echo -e "${RED}Wrong option type: 'terra help', for help ${SET}" && sleep 1;;
+        *) echo -e "${RED}Wrong option type: 'vm help', for help ${SET}" && sleep 1;;
     esac
 }
