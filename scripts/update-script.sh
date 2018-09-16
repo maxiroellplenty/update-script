@@ -7,6 +7,26 @@ source ~/update-script/scripts/art.sh
 # Base working directory
 baseWorkspace='/workspace/';
 
+function checkForUpdate()
+{
+    version=`curl https://raw.githubusercontent.com/maxiroellplenty/update-script/master/version`;
+    localValue=`cat version`;
+
+    if [$version > $localValue]; then
+        echo "there is a new verison of git-update-script do you want to update now ? Y / N"
+        read input
+        case $input in
+            "Y") installWarning ;;
+            "N") main ;;
+            "y") installWarning ;;
+            "n") main ;;
+            *) echo -e "${RED}Error...${SET}"
+        esac
+        else
+        main
+    fi
+}
+
 function readRepositories()
 {
     while read line || [ -n "$line" ];
@@ -224,4 +244,4 @@ function main()
         read_options
     done
 }
-main
+checkForUpdate
