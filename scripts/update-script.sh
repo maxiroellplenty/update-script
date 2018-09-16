@@ -89,23 +89,13 @@ function showRepositories()
 {
     printLine
     echo "${bold}REPOSITORY OVERVIEW ${normal}"
-    echo ""
     for repo in "${repositories[@]}"
     do
         dir="$baseWorkspace$repo"
         cd $dir;
-        unixTimeStamp=$(stat -f '%m' .git/FETCH_HEAD)
-        if [[ -z $(git status -s) ]]; then
-            echo "${bold}Repository: ${normal} $repo";
-            echo "${bold}Status:     ${normal} ${GREEN}Up to date ${SET}";
-            echo "${bold}Last Pull:  ${normal} $(date -r "$unixTimeStamp")";
-        else
-            echo "${bold}Repository: ${normal} $repo";
-            echo "${bold}Status:     ${normal} ${RED}Outdated or Changes ${SET}";
-            echo "${bold}Last Pull:  ${normal} $(date -r "$unixTimeStamp")";
-        fi
-        echo "";
+        echo "$dir ${bold}=> ${normal} ${PURPLE}`git branch | grep \* | cut -d ' ' -f2`${SET}"
     done
+    echo ""
     printLine
 }
 
@@ -186,29 +176,42 @@ function show_menus()
     printHeader
     echo "1. Pull all repositories"
     echo "2. ${YELLOW}Pull all repositories ${SET} ${LIGHTRED}(force reset changes)${SET}"
-    echo "3. Show repository list"
+    echo "3. List repositories"
     echo "4. Clean local repository ${LIGHTRED}(disabled)${SET}"
-    echo "5. Exit"
-    echo "6. Edit repositories" 
-    echo "7. ${YELLOW}Update script${SET}"
+    echo "5. Edit repositories" 
+    echo "6. ${YELLOW}Update script${SET}"
+    #echo "7. ${YELLOW}Change branch${SET}"
+    echo "exit"
+}
+
+function changeBranch()
+{
+    for i in "${repositories[@]}"
+    do
+        dir="$baseWorkspace$i"
+        cd $dir
+        
+    done
 }
 
 function read_options()
 {
     local choice
-    read -p "Enter choice [ 1 - 7] " choice
+    read -p "Enter choice [ 1 - 8] " choice
     case $choice in
         1) pullSave ;;
         2) printWarning ;;
         3) showRepositories;;
         4) main;;
-        5) exit 0;;
-        6) editRepositories;;
-        7) installWarning;;
+        5) editRepositories;;
+        6) installWarning;;
+        #7) changeBranch;;
+        "exit") exit 0;;
         1337) installAdventure;;
         *) echo -e "${RED}Error...${SET}" && sleep 2
     esac
 }
+
 #trap '' SIGINT SIGQUIT SIGTSTP
 
 function main()
@@ -221,13 +224,4 @@ function main()
         read_options
     done
 }
-
-if  [ "$1" == "-install" ]
-then
-    install
-elif [ "$1" == "-update" ]
-then
-    echo "test"
-else
-    main
-fi
+main
