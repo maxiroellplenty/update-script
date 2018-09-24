@@ -244,4 +244,5 @@ function main()
         read_options
     done
 }
-checkForUpdate
+#checkForUpdate
+main
