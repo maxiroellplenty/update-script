@@ -10,9 +10,9 @@ baseWorkspace='/workspace/';
 function checkForUpdate()
 {
     version=`curl https://raw.githubusercontent.com/maxiroellplenty/update-script/master/scripts/version`;
-    localValue=`cat version`;
-
-    if [ "$version" -gt "$localValue" ]; then
+    localValue=`cat ./version`;
+    echo $localValue;
+    if (( version > localValue )); then
         echo "there is a new verison of git-update-script do you want to update now ? Y / N"
         read input
         case $input in
