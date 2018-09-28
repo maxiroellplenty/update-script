@@ -113,7 +113,11 @@ function showRepositories()
     do
         dir="$baseWorkspace$repo"
         cd $dir;
-        echo "$dir ${bold}=> ${normal} ${PURPLE}`git branch | grep \* | cut -d ' ' -f2`${SET}"
+        if [ -n "$(git status --porcelain)" ]; then
+             changes="${GREEN}+${SET}${RED}-${SET}"
+        fi
+        echo "$dir ${bold}=> ${normal} ${PURPLE}`git branch | grep \* | cut -d ' ' -f2`${SET} $changes"
+        changes=""
     done
     echo ""
     printLine
